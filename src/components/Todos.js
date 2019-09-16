@@ -5,9 +5,13 @@ import axios from 'axios'
 const Todos = () => {
     const [todos, setTodos] = useState([])
     
-    useEffect(async () => {
-        const {data} = await axios.get('/api/todos')
-        setTodos(data)
+    useEffect(() => {
+        (async () => {
+            const response = await axios.get('/api/todos')
+            console.log('response', response)
+            setTodos(response.data)
+        })()
+        
     }, [])
 
     return (
